@@ -14,7 +14,9 @@
       "../node_modules/@types"
     ],
     "types": [
-      "jasmine"
+      "jasmine",
+      "angularfire2",
+      "firebase"
     ]
   }
 }
