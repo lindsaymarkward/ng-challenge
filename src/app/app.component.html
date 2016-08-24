@@ -4,7 +4,7 @@
 <p>Hi there :)</p>
 
 <ul>
-  <li *ngFor="let user of users | async">
+  <li *ngFor="let user of users | async" (click)="showMore(user.$key)">
       {{ user.name }} ({{ user.score }}) - <a href="mailto:{{ user.email }}">{{ user.email }}</a>
   </li>
 </ul>
