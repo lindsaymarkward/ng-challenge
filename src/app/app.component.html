@@ -3,8 +3,14 @@
 </h1>
 <p>Hi there :)</p>
 
-<ul>
-  <li *ngFor="let user of users | async" (click)="showMore(user.$key)">
-      {{ user.name }} ({{ user.score }}) - <a href="mailto:{{ user.email }}">{{ user.email }}</a>
-  </li>
-</ul>
+<form>
+  <div class="row"  *ngFor="let user of users | async" (click)="showMore(user.$key)">
+  <p>
+    Score: <input type="text" value="{{ user.score }}" #score>
+    Name: <input type="text" value="{{ user.name }}" #name>
+    Email: <input type="text" value="{{ user.email}}" #email>
+    <input class="btn" type="button" value="Update" (click)="update(user.$key, score.value)">
+    <input class="btn" type="button" value="Delete" (click)="remove(user.$key)">
+  </p>
+  </div>
+</form>

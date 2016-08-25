@@ -16,23 +16,26 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.af.database.list('/users')
-      .map(items => items.sort((a, b) => {
-        if (a.score <= b.score) {
-          return 1;
-        }
-        return -1;
-      }));
+      .map(items => items.sort((a, b) => b.score - a.score)) as FirebaseListObservable<any[]>;
 
-    var key = this.users.push({
-      "email" : "bob@gmail.com",
-      "name" : "Bobby",
-      "score" : 13
-    }).key;
-    console.log(key);
+    // var key = this.users.push({
+    //   "email" : "bob@gmail.com",
+    //   "name" : "Bobby",
+    //   "score" : 13
+    // }).key;
+    // console.log(key);
   }
+
 
   showMore(key) {
     console.log(key);
   }
 
+  update(key, score) {
+    this.users.update(key, {score: parseInt(score)})
+  }
+
+  remove(key) {
+    this.users.remove(key);
+  }
 }
