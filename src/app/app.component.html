@@ -2,15 +2,7 @@
   {{title}}
 </h1>
 <p>Hi there :)</p>
-
-<form>
-  <div class="row"  *ngFor="let user of users | async" (click)="showMore(user.$key)">
-  <p>
-    Score: <input type="text" value="{{ user.score }}" #score>
-    Name: <input type="text" value="{{ user.name }}" #name>
-    Email: <input type="text" value="{{ user.email}}" #email>
-    <input class="btn" type="button" value="Update" (click)="update(user.$key, score.value)">
-    <input class="btn" type="button" value="Delete" (click)="remove(user.$key)">
-  </p>
-  </div>
-</form>
+<p>We have {{ numberOfUsers }} users.</p>
+<a routerLink="/leaderboard">Leaderboard</a>
+<a routerLink="/users">Users</a>
+<router-outlet></router-outlet>
