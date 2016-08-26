@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users';
 import { LeaderboardComponent } from './leaderboard';
+import { UserDetailComponent } from './userdetail';
 
 const appRoutes: Routes = [
   {
@@ -9,13 +10,14 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'leaderboard',
+    component: LeaderboardComponent
+  },
+  {
     path: 'users',
     component: UsersComponent
   },
-  {
-    path: 'leaderboard',
-    component: LeaderboardComponent
-  }
+  { path: 'user/:userid', component: UserDetailComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

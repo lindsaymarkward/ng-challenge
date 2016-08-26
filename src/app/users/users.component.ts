@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -10,7 +11,9 @@ export class UsersComponent implements OnInit {
 
   users: FirebaseListObservable<any[]>;  // note: tried using 'FirebaseListObservable<any[]>' but got type conversion error
 
-  constructor(private af: AngularFire) {
+  constructor(
+    private af: AngularFire,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -25,15 +28,12 @@ export class UsersComponent implements OnInit {
     // console.log(key);
   }
 
-  showMore(key) {
-    console.log(key);
+  gotoDetail(key) {
+    this.router.navigate(['/user', key]);
   }
 
   update(key, score) {
     this.users.update(key, { score: parseInt(score, 10) });
-    this.showMore('a');
-    this.showMore('b');
-
   }
 
   remove(key) {

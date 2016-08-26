@@ -1,5 +1,5 @@
 <form>
-  <div class="row"  *ngFor="let user of users | async" (click)="showMore(user.$key)">
+  <div class="row"  *ngFor="let user of users | async" (click)="gotoDetail(user.$key)">
   <p>
     Score: <input type="text" value="{{ user.score }}" #score>
     Name: <input type="text" value="{{ user.name }}" #name>
