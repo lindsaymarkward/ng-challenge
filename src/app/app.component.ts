@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
+const jQuery = require('jquery');
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

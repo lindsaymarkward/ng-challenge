@@ -5,7 +5,6 @@
     Score: <input type="text" value="{{ user.score }}" #score>
     Name: <input type="text" value="{{ user.name }}" #name>
     Email: <input type="text" value="{{ user.email}}" #email>
-    <input class="btn" type="button" value="Update" (click)="update(user.$key, score.value)">
-    <input class="btn" type="button" value="Delete" (click)="remove(user.$key)">
+    <input class="btn" type="button" value="Update" (click)="update(score.value)">
+    <input class="btn" type="button" value="Delete" (click)="remove()">
   </p>
-

@@ -1,6 +1,6 @@
 <form>
   <div class="row"  *ngFor="let user of users | async" (click)="gotoDetail(user.$key)">
-  <p>
+  <p class="lead">
     Score: {{ user.score }}, 
     Name: {{ user.name }}, 
     Email: {{ user.email}} 

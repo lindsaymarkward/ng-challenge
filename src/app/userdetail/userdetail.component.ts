@@ -33,11 +33,11 @@ export class UserDetailComponent implements OnInit {
   });
   }
 
-  update(key, score) {
+  update(score) {
     this.userObservable.update({ score: parseInt(score, 10) });
   }
 
-  remove(key) {
+  remove() {
     this.userObservable.remove();
     // return to the users list
     this.router.navigate(['/users']);
