@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire } from 'angularfire2';
-import { ActivatedRoute, Params } from '@angular/router';
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-userdetail',
@@ -9,17 +9,38 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class UserDetailComponent implements OnInit {
 
-  private user: any;
+  public userObservable: FirebaseObjectObservable<any>;
+  public user: any;
 
-  constructor(private af: AngularFire,
-    private route: ActivatedRoute) {
+  constructor(
+    private af: AngularFire,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
     let userid = params['userid'];
-    this.user = userid;
+    // get user from database
+    // TODO: there may be a better way than maintaining the object and observable versions
+    this.userObservable = this.af.database.object(`users/${userid}`);
+    this.userObservable.subscribe(
+      user => {
+        this.user = user;
+        // console.log(user);
+      }
+    );
   });
+  }
+
+  update(key, score) {
+    this.userObservable.update({ score: parseInt(score, 10) });
+  }
+
+  remove(key) {
+    this.userObservable.remove();
+    // return to the users list
+    this.router.navigate(['/users']);
   }
 
 }

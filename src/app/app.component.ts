@@ -9,15 +9,11 @@ import { AngularFire } from 'angularfire2';
 })
 export class AppComponent implements OnInit {
   title = 'The IT@JCU Challenge';
-  numberOfUsers: number;
 
   constructor(private af: AngularFire) {
   }
 
   ngOnInit() {
-    // this.users = this.af.database.list('/users');
-    this.af.database.list('/users')
-    .subscribe(users => { this.numberOfUsers = users.length; });
   }
 
 }

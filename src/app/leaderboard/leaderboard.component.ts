@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFire } from 'angularfire2';
 
 @Component({
   selector: 'app-leaderboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaderboardComponent implements OnInit {
 
-  constructor() { }
+  numberOfUsers: number;
+
+  constructor(private af: AngularFire) {
+  }
 
   ngOnInit() {
+    // this.users = this.af.database.list('/users');
+    this.af.database.list('/users')
+    .subscribe(users => { this.numberOfUsers = users.length; });
   }
 
 }
