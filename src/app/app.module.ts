@@ -3,7 +3,7 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { UsersComponent } from './users/users.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { routing } from './app.routing';
@@ -15,6 +15,11 @@ export const firebaseConfig = {
   authDomain: "firedemo-4ee41.firebaseapp.com",
   databaseURL: "https://firedemo-4ee41.firebaseio.com",
   storageBucket: "firedemo-4ee41.appspot.com",
+};
+
+export const firebaseAuthConfig = {
+  provider: AuthProviders.Google,
+  method: AuthMethods.Redirect
 };
 
 @NgModule({
@@ -30,7 +35,7 @@ export const firebaseConfig = {
     CommonModule,
     FormsModule,
     routing,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
   providers: [],
   entryComponents: [AppComponent],

@@ -1,7 +1,7 @@
 <div *ngFor="let user of users | async" (click)="gotoDetail(user.$key)">
   <div class="panel panel-default">
     <div class="panel-body">
-      <strong>Name: </strong>{{ user.name }}, <strong>Email:</strong> {{ user.email}}, <strong>Score:</strong> {{ user.score }}
+      <img src="{{ user.profileURL }}" alt="{{ user.name }}" class="user-image"> <strong>Name: </strong>{{ user.name }}, <strong>Email:</strong> {{ user.email}}, <strong>Score:</strong> {{ user.score }}
     </div>
   </div>
 </div>

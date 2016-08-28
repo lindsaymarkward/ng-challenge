@@ -1,11 +1,20 @@
 <div class="container">
+  <div *ngIf="auth | async" class="profile-box">{{ displayName }}
+    <img src="{{ userImage }}" alt="{{ displayName }}" class="user-image">
+  </div>
   <h1>
     {{title}}
   </h1>
   <ul class="nav nav-tabs">
     <li><a routerLink="/leaderboard" routerLinkActive="active">Leaderboard</a></li>
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-    <li><a routerLink="/users" routerLinkActive="active">Users</a></li>
+
+    <li *ngIf="(auth | async)"><a routerLink="/users" routerLinkActive="active">Users</a></li>
+    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="login()">Login</a></li>
+    <li *ngIf="(auth | async)" class="pull-right"><a (click)="logout()">Logout</a></li>
   </ul>
   <router-outlet></router-outlet>
+  <footer class="footer">
+
+  </footer>
 </div>
