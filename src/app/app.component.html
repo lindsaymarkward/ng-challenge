@@ -1,6 +1,9 @@
 <div class="container">
-  <div *ngIf="auth | async" class="profile-box">{{ displayName }}
-    <img src="{{ userImage }}" alt="{{ displayName }}" class="user-image">
+  <div *ngIf="auth | async" class="thumbnail">
+    <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
+    <div class="caption overlay">
+      <p>{{ user.name }}</p>
+    </div>
   </div>
   <h1>
     {{title}}

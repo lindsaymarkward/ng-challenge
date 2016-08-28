@@ -4,9 +4,27 @@ import { AngularFire, AngularFireAuth } from 'angularfire2';
 @Injectable()
 export class AuthService {
 
-  private auth: AngularFireAuth;
-
   constructor(private af: AngularFire) {
-    this.auth = this.af.auth;
+    
+  }
+
+  getAuth() {
+    return this.af.auth;
+  }
+
+  login() {
+    this.af.auth.login();
+  }
+
+  logout() {
+    this.af.auth.logout();
+  }
+
+  isAdmin() {
+    return false;
+  }
+
+  isLoggedIn() {
+    return this.af.auth;
   }
 }

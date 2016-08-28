@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AngularFireAuth } from 'angularfire2';
+import { AuthService } from './shared/auth.service';
 import { User } from './shared';
 
 const jQuery = require('jquery');
@@ -14,30 +15,28 @@ const jQuery = require('jquery');
 export class AppComponent implements OnInit {
   title = 'The IT@JCU Challenge';
   auth: AngularFireAuth;
-  displayName: string;
-  userImage: string;
-  user: User;
+  user: User;  // TODO - use this
 
-  constructor(private af: AngularFire) {
-    this.auth = this.af.auth;
+  constructor(private af: AngularFire, private authService: AuthService) {
+    this.auth = this.authService.getAuth();
   }
 
   ngOnInit() {
+    // TODO - change this. Put it in AuthService somewhere...
     this.af.auth.subscribe(auth => {
-      // console.log(auth.auth.displayName);
       if (auth) {
-        this.displayName = auth.auth.displayName;
-        this.userImage = auth.auth.photoURL;
+        this.user = { name: auth.auth.displayName, profileImageURL: auth.auth.photoURL };
       }
     }
     );
   }
 
   login() {
-    this.af.auth.login();
+    this.authService.login();
   }
+
   logout() {
-    this.af.auth.logout();
+    this.authService.logout();
   }
 
 }

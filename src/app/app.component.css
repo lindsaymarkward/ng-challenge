@@ -1,3 +1,17 @@
 /*.active { background-color: aquamarine}*/
 .user-image { border-radius: 49%; }
 .profile-box { float: right; }
+
+.thumbnail{
+    position:relative;
+    float: right;
+}
+.overlay {
+    bottom:0;
+    left:0;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: rgba(256, 256, 256, 0.7);
+}
