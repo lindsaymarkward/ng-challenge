@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 const jQuery = require('jquery');
+// const bootstrap = require('bootstrap');
 
 @Component({
   selector: 'app-root',
@@ -17,5 +18,4 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

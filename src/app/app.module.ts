@@ -8,6 +8,7 @@ import { UsersComponent } from './users/users.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { routing } from './app.routing';
 import { UserDetailComponent } from './userdetail/userdetail.component';
+import { AboutComponent } from './about/about.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU",
@@ -21,7 +22,8 @@ export const firebaseConfig = {
     AppComponent,
     UsersComponent,
     LeaderboardComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
