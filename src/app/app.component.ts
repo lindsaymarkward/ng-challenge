@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFire, AngularFireAuth } from 'angularfire2';
 import { AuthService } from './shared/auth.service';
 import { User } from './shared';
@@ -10,12 +10,13 @@ const jQuery = require('jquery');
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  styleUrls: ['app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   title = 'The IT@JCU Challenge';
   auth: AngularFireAuth;
-  user: User;  // TODO - use this
+  user: User;
 
   constructor(private af: AngularFire, private authService: AuthService) {
     this.auth = this.authService.getAuth();
@@ -23,9 +24,30 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // TODO - change this. Put it in AuthService somewhere...
+    // this.user = this.authService.getUser();
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.user = { name: auth.auth.displayName, profileImageURL: auth.auth.photoURL };
+      }
+    }
+    );
+
+  }
+
+  createAccount() {
+    this.login();  // need to use AuthMethod.Popup so it doesn't navigate away
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        this.user = {
+          name: auth.auth.displayName,
+          profileImageURL: auth.auth.photoURL,
+          uid: auth.auth.uid,
+          email: auth.auth.email,
+          score: 0,
+          admin: false
+        };
+        console.log(`Creating new user: ${this.user.name}`);
+        this.af.database.object(`/users/${this.user.uid}`).update(this.user);
       }
     }
     );

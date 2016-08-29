@@ -2,7 +2,7 @@
   <div *ngIf="auth | async" class="thumbnail">
     <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
     <div class="caption overlay">
-      <p>{{ user.name }}</p>
+      <p>{{ user.name }}, {{ user.score }}</p>
     </div>
   </div>
   <h1>
@@ -16,6 +16,9 @@
     <li *ngIf="!(auth | async)" class="pull-right"><a (click)="login()">Login</a></li>
     <li *ngIf="(auth | async)" class="pull-right"><a (click)="logout()">Logout</a></li>
   </ul>
+  <div *ngIf="!(auth | async)" class="panel">
+    <p class="panel-body"><a (click)="createAccount()">Sign up with your Google login</a></p>
+  </div>
   <router-outlet></router-outlet>
   <footer class="footer">
 

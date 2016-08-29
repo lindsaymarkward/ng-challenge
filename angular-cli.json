@@ -13,8 +13,7 @@
         "../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
       "styles": [
-        "src/assets/styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.css"
+        "src/assets/styles.scss"
       ]
     }
   ],
@@ -33,7 +32,7 @@
   "defaults": {
     "prefix": "app",
     "sourceDir": "src",
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "lazyRoutePrefix": "+"
   }

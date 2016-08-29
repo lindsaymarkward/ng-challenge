@@ -12,15 +12,15 @@ import { AboutComponent } from './about/about.component';
 import { AuthService, User } from './shared';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU",
-  authDomain: "firedemo-4ee41.firebaseapp.com",
-  databaseURL: "https://firedemo-4ee41.firebaseio.com",
-  storageBucket: "firedemo-4ee41.appspot.com",
+  apiKey: 'AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU',
+  authDomain: 'firedemo-4ee41.firebaseapp.com',
+  databaseURL: 'https://firedemo-4ee41.firebaseio.com',
+  storageBucket: 'firedemo-4ee41.appspot.com',
 };
 
 export const firebaseAuthConfig = {
   provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
+  method: AuthMethods.Popup
 };
 
 @NgModule({

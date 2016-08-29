@@ -1,5 +1,5 @@
 /*.active { background-color: aquamarine}*/
-.user-image { border-radius: 49%; }
+.user-image { border-radius: 50%; height: 50px; width: 50px; }
 .profile-box { float: right; }
 
 .thumbnail{
