@@ -27,7 +27,15 @@ export class AppComponent implements OnInit {
     // this.user = this.authService.getUser();
     this.af.auth.subscribe(auth => {
       if (auth) {
-        this.user = { name: auth.auth.displayName, profileImageURL: auth.auth.photoURL };
+        let userObservable = this.af.database.object(`/users/${auth.auth.uid}`);
+        userObservable.subscribe(
+          user => {
+            this.user = user;
+          }
+        );
+        console.log(this.user);
+        console.log(auth.auth);
+        // this.user = { name: auth.auth.displayName, profileImageURL: auth.auth.photoURL };
       }
     }
     );
@@ -55,10 +63,17 @@ export class AppComponent implements OnInit {
 
   login() {
     this.authService.login();
+    // TODO - check if user exists in the system, then redirect or set
+    // this.af.auth.subscribe(auth => {
+    //   if (auth) {
+    //   }
+    // }
+    // );
   }
 
   logout() {
     this.authService.logout();
+    this.user = null;
   }
 
 }

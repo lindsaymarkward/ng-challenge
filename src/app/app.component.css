@@ -1,17 +1,21 @@
 /*.active { background-color: aquamarine}*/
-.user-image { border-radius: 50%; height: 50px; width: 50px; }
-.profile-box { float: right; }
+.user-image {
+    border-radius: 50%;
+}
+.profile { 
+    float: right;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-details {
+    margin-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: inherit;
+}
 
 .thumbnail{
     position:relative;
     float: right;
-}
-.overlay {
-    bottom:0;
-    left:0;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    background-color: rgba(256, 256, 256, 0.7);
 }

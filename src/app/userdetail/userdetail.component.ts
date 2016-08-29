@@ -22,7 +22,6 @@ export class UserDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
     let userid = params['userid'];
     // get user from database
-    // TODO: there may be a better way than maintaining the object and observable versions
     this.userObservable = this.af.database.object(`users/${userid}`);
     this.userObservable.subscribe(
       user => {

@@ -1,8 +1,12 @@
 <div class="container">
-  <div *ngIf="auth | async" class="thumbnail">
-    <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
-    <div class="caption overlay">
-      <p>{{ user.name }}, {{ user.score }}</p>
+  <div *ngIf="user" class="profile thumbnail">
+    <div class="profile-image">
+      <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
+    </div>
+    <div class="profile-details">
+      <p>{{ user.name }}</p>
+      <p>Score: <strong>{{ user.score }}</strong></p>
+      <p><a (click)="logout()">Logout</a></p>
     </div>
   </div>
   <h1>
@@ -14,11 +18,8 @@
 
     <li *ngIf="(auth | async)"><a routerLink="/users" routerLinkActive="active">Users</a></li>
     <li *ngIf="!(auth | async)" class="pull-right"><a (click)="login()">Login</a></li>
-    <li *ngIf="(auth | async)" class="pull-right"><a (click)="logout()">Logout</a></li>
+    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="createAccount()">Sign up with Google account</a></li>
   </ul>
-  <div *ngIf="!(auth | async)" class="panel">
-    <p class="panel-body"><a (click)="createAccount()">Sign up with your Google login</a></p>
-  </div>
   <router-outlet></router-outlet>
   <footer class="footer">
 
