@@ -24,7 +24,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // TODO - change this. Put it in AuthService somewhere...
-    this.user = this.authService.getUser();
+    this.authService.getUser()
+      .subscribe(user => { this.user = user; console.log(`Got: ${user.name}`); });
+
     // this.af.auth.subscribe(auth => {
     //   if (auth) {
     //     let userObservable = this.af.database.object(`/users/${auth.auth.uid}`);
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit {
 
   createAccount() {
     this.login();  // need to use AuthMethod.Popup so it doesn't navigate away
+    // TODO - move to AuthService
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.user = {
@@ -74,6 +77,8 @@ export class AppComponent implements OnInit {
     this.user = null;
   }
   check() {
-    let user = this.authService.getUser();
+    this.authService.getUser()
+      .subscribe(user => { this.user = user; console.log(`Checked: ${user.name}`); });
+
   }
 }
