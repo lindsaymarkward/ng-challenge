@@ -23,6 +23,25 @@ export class AuthService {
     });
   }
 
+  createAccount() {
+    this.login();  // need to use AuthMethod.Popup so it doesn't navigate away
+    // TODO - check for existing user; don't create account if user exists
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        let user = {
+          name: auth.auth.displayName,
+          profileImageURL: auth.auth.photoURL,
+          uid: auth.auth.uid,
+          email: auth.auth.email,
+          score: 0,
+          admin: false
+        };
+        console.log(`Creating new user: ${user.name}`);
+        this.af.database.object(`/users/${user.uid}`).update(user);
+      }
+    }
+    );
+  }
   getAuth() {
     return this.af.auth;
   }

@@ -1,6 +1,6 @@
 <h2>Leaderboard</h2>
 <p>We have {{ numberOfUsers }} users.</p>
-<table class="table table-striped table-hover table-bordered table-condensed" id="leaderboard">
+<table class="table table-striped table-hover table-condensed" id="leaderboard">
     <thead>
         <tr>
             <th class="">#</th>
@@ -11,10 +11,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let user of users | async; let i = index" [ngClass]="{'success': user.$key === loggedInUser.uid}" (click)="gotoDetail(user.$key)" id="{{ user.$key }}" >
-            <td>{{ i + 1 }}</td>
-            <td>{{ user.score }}</td>
-            <td>{{ user.name }} <span *ngIf="i === 0" class="glyphicon glyphicon-star"></span></td>
-            <td>{{ user.score }}</td>
+            <td>{{ i + 1 }} <span *ngIf="i === 0" class="glyphicon glyphicon-star"></span></td>
+            <td><span class="badge">{{ user.score }}</span></td>
+            <td>{{ user.name }}</td>
+            <!--<td><img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image small-user-image"></td>-->
+            <td><img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image small-user-image"></td>
         </tr>
     </tbody>
 </table>

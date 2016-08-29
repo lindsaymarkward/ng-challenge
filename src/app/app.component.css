@@ -6,6 +6,7 @@
     float: right;
     display: flex;
     justify-content: space-between;
+    margin-bottom: -15px;
 }
 
 .profile-details {

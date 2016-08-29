@@ -32,23 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   createAccount() {
-    this.login();  // need to use AuthMethod.Popup so it doesn't navigate away
-    // TODO - move to AuthService
-    this.af.auth.subscribe(auth => {
-      if (auth) {
-        this.user = {
-          name: auth.auth.displayName,
-          profileImageURL: auth.auth.photoURL,
-          uid: auth.auth.uid,
-          email: auth.auth.email,
-          score: 0,
-          admin: false
-        };
-        console.log(`Creating new user: ${this.user.name}`);
-        this.af.database.object(`/users/${this.user.uid}`).update(this.user);
-      }
-    }
-    );
+    this.authService.createAccount();
   }
 
   login() {
