@@ -6,19 +6,29 @@ import { User } from './models';
 @Injectable()
 export class AuthService {
 
+  user: User;
+
   constructor(private af: AngularFire) {
   }
 
-  // getUser(): Observable<User> {
-  //   this.af.auth.subscribe(auth => {
-  //     if (auth) {
-  //       let user = { name: auth.auth.displayName, profileImageURL: auth.auth.photoURL };
-  //       console.log(auth);
-  //       return user;
-  //     } else { return null; }
-  //   }
-  //   );
-  // }
+  getUser(): Observable<User> {
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        let userObservable = this.af.database.object(`/users/${auth.auth.uid}`);
+        userObservable.subscribe(
+          user => {
+            this.user = user;
+            return this.user;
+          }
+        );
+        console.log(`getUser(): ${this.user.name}`);
+      } else {
+        this.user = null;
+            return this.user;
+      }
+    }
+    );
+  }
 
   getAuth() {
     return this.af.auth;

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { User } from '../shared';
 
 const jQuery = require('jquery');
 
@@ -9,7 +10,7 @@ const jQuery = require('jquery');
   styleUrls: ['leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-
+  @Input() user: User;
   numberOfUsers: number;
   users: FirebaseListObservable<any[]>;
 
