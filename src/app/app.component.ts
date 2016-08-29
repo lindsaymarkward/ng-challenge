@@ -23,23 +23,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // TODO - change this. Put it in AuthService somewhere...
+    this.user = {};
     this.authService.getUser()
-      .subscribe(user => { this.user = user; console.log(`Got: ${user.name}`); });
-
-    // this.af.auth.subscribe(auth => {
-    //   if (auth) {
-    //     let userObservable = this.af.database.object(`/users/${auth.auth.uid}`);
-    //     userObservable.subscribe(
-    //       user => {
-    //         this.user = user;
-    //       }
-    //     );
-    //     console.log(this.user);
-    //     console.log(auth.auth);
-    //   }
-    // }
-    // );
+      .subscribe(user => {
+        this.user = user;
+        // console.log(`Got: ${user.name}`);
+      });
   }
 
   createAccount() {
@@ -74,7 +63,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.user = null;
+    this.user = {};
   }
   check() {
     this.authService.getUser()

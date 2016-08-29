@@ -11,35 +11,17 @@ export class AuthService {
   constructor(private af: AngularFire) {
   }
 
-  // getUserObs(): Observable<User> {
-  //   return this.af.auth
-  //     .map(auth => {
-  //       if (auth) {
-  //         console.log('auth is true');
-  //         return this.af.database.object(`/users/${auth.auth.uid}`)
-  //           .subscribe(user => { this.user = user; console.log(`getUser(): ${user.name}`); return user as Observable<User>; });
-  //       } else {
-  //         console.log('auth is false');
-  //         this.user = null;
-  //         return this.user;
-  //       }
-  //     }
-  //     );
-  // }
-
   getUser(): Observable<User> {
     return this.af.auth.flatMap(auth => {
       if (auth) {
+        // console.log('auth is true');
         return this.af.database.object(`/users/${auth.auth.uid}`);
       } else {
-        return new Observable<User>();
+        // console.log('auth is false');
+        return Observable.of({});
       }
     });
   }
-
-  // getUser() {
-  //   return this.user;
-  // }
 
   getAuth() {
     return this.af.auth;

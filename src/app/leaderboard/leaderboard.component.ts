@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { User } from '../shared';
+import { AuthService, User } from '../shared';
 
 const jQuery = require('jquery');
 
@@ -10,14 +10,20 @@ const jQuery = require('jquery');
   styleUrls: ['leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  @Input() user: User;
+  loggedInUser: User;
   numberOfUsers: number;
   users: FirebaseListObservable<any[]>;
 
-  constructor(private af: AngularFire) {
+  constructor(private af: AngularFire, private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.authService.getUser()
+      .subscribe(user => {
+        this.loggedInUser = user;
+        // console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
+      }
+      );
     this.users = this.af.database.list('/users')
       .map(users => users.sort((a, b) => b.score - a.score)) as FirebaseListObservable<any[]>;
     this.users

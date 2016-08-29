@@ -1,24 +1,24 @@
 <div class="container">
-  <div *ngIf="user" class="profile thumbnail">
+  <div *ngIf="user.name" class="profile thumbnail">
     <div class="profile-image">
       <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
     </div>
     <div class="profile-details">
       <p>{{ user.name }}</p>
       <p>Score: <strong>{{ user.score }}</strong></p>
-      <p><a (click)="logout()">Logout</a></p>
+      <p><a (click)="logout()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logout</a></p>
     </div>
   </div>
   <h1 (click)="check()">
     {{title}}
   </h1>
   <ul class="nav nav-tabs">
-    <li><a routerLink="/leaderboard" routerLinkActive="active">Leaderboard</a></li>
-    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    <li><a routerLink="/leaderboard" routerLinkActive="active"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Leaderboard</a></li>
+    <li><a routerLink="/about" routerLinkActive="active"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> About</a></li>
 
     <li *ngIf="(auth | async)"><a routerLink="/users" routerLinkActive="active">Users</a></li>
-    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="login()">Login</a></li>
-    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="createAccount()">Sign up with Google account</a></li>
+    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="login()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="createAccount()"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up with Google account</a></li>
   </ul>
   <router-outlet></router-outlet>
   <footer class="footer">

@@ -10,10 +10,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr id="{{ user.$key }}" *ngFor="let user of users | async; let i = index" [ngClass]="{'success': i === 0}" (click)="gotoDetail(user.$key)">
+        <tr *ngFor="let user of users | async; let i = index" [ngClass]="{'success': user.$key === loggedInUser.uid}" (click)="gotoDetail(user.$key)" id="{{ user.$key }}" >
             <td>{{ i + 1 }}</td>
             <td>{{ user.score }}</td>
-            <td>{{ user.name }}</td>
+            <td>{{ user.name }} <span *ngIf="i === 0" class="glyphicon glyphicon-star"></span></td>
             <td>{{ user.score }}</td>
         </tr>
     </tbody>
