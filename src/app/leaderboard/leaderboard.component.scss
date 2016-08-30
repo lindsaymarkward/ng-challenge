@@ -1,13 +1,8 @@
-$hot-pink: #bc436c;
-
-p { color: $hot-pink; }
-
 .small-user-image {
     height: 25px;
     width: 25px;
 }
 /* loggedinUser special styles - inside success class */
 .success .user-image {
-    shadow: 2px;
-    border: thin solid yellow;
+    box-shadow: 0 0 3px 3px #888888;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, AngularFireAuth } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import { User } from './models';
 
@@ -12,6 +12,7 @@ export class AuthService {
   }
 
   getUser(): Observable<User> {
+    console.log('Getting user...');
     return this.af.auth.flatMap(auth => {
       if (auth) {
         // console.log('auth is true');
@@ -54,7 +55,8 @@ export class AuthService {
     this.af.auth.logout();
   }
 
-  isAdmin() {
+  isAdmin(user) {
+    // this.af.database.object(`/users/${user.uid}`)
     return false;
   }
 

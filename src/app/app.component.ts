@@ -23,11 +23,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.auth);
     this.user = {};
     this.authService.getUser()
       .subscribe(user => {
         this.user = user;
-        // console.log(`Got: ${user.name}`);
+        console.log(`Got: ${user.name}`);
       });
   }
 
