@@ -15,6 +15,7 @@ export class LeaderboardComponent implements OnInit {
   users: FirebaseListObservable<any[]>;
 
   constructor(private af: AngularFire, private authService: AuthService) {
+    this.loggedInUser = {};
   }
 
   ngOnInit() {
