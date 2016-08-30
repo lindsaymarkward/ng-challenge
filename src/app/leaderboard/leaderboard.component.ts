@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { AuthService, User } from '../shared';
-
-const jQuery = require('jquery');
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-leaderboard',
   templateUrl: 'leaderboard.component.html',
-  styleUrls: ['leaderboard.component.css']
+  styleUrls: ['leaderboard.component.scss']
 })
 export class LeaderboardComponent implements OnInit {
   loggedInUser: User;
@@ -22,7 +21,7 @@ export class LeaderboardComponent implements OnInit {
     this.authService.getUser()
       .subscribe(user => {
         this.loggedInUser = user;
-        // console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
+        console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
       }
       );
     this.users = this.af.database.list('/users')
@@ -30,7 +29,7 @@ export class LeaderboardComponent implements OnInit {
     this.users
       .subscribe(users => {
         this.numberOfUsers = users.length;
-        jQuery('#leaderboard').fadeOut(300).fadeIn(300);
+        $('#leaderboard').fadeOut(300).fadeIn(300);
       });
   }
 
