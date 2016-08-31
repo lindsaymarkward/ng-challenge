@@ -53,7 +53,7 @@ export class AuthService {
         }).unsubscribe();
       }
     }
-    );
+    ).unsubscribe();
   }
   getAuth() {
     return this.af.auth;
@@ -61,6 +61,27 @@ export class AuthService {
 
   login() {
     this.af.auth.login();
+    // only login existing users
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        // check for existing user
+        console.log(`Logged in with uid ${auth.auth.uid}`);
+        let loggedInUser = this.af.database.object(`/users/${auth.auth.uid}`);
+        loggedInUser.subscribe(checkedUser => {
+          console.log(checkedUser);
+          if (checkedUser.uid) {
+            console.log('User exists');
+            // return;
+            // don't need to do anything else; user will just be logged in
+          } else {
+            console.log('User does not exist; Logging out');
+            // TODO - message about signing up
+            this.logout();
+          }
+        }).unsubscribe();
+      }
+    }
+    ).unsubscribe(); // TODO - not sure about this unsubscribe... without it, I get another new subscription each time... with it, I get no console.log output 
   }
 
   logout() {

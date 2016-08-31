@@ -17,8 +17,8 @@
     <li><a routerLink="/about" routerLinkActive="active"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> About</a></li>
 
     <li *ngIf="(auth | async)"><a routerLink="/users" routerLinkActive="active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
-    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="login()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
-    <li *ngIf="!(auth | async)" class="pull-right"><a (click)="createAccount()"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up with Google account</a></li>
+    <li *ngIf="!(auth | async)" class="pull-right clickable"><a (click)="login()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+    <li *ngIf="!(auth | async)" class="pull-right clickable"><a (click)="createAccount()"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up with Google account</a></li>
   </ul>
   <router-outlet></router-outlet>
   <footer class="footer">

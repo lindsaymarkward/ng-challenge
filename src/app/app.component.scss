@@ -16,7 +16,11 @@
     justify-content: inherit;
 }
 
-.thumbnail{
+.thumbnail {
     position:relative;
     float: right;
+}
+
+.clickable {
+    cursor: pointer;
 }
