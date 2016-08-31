@@ -29,16 +29,28 @@ export class AuthService {
     // TODO - check for existing user; don't create account if user exists
     this.af.auth.subscribe(auth => {
       if (auth) {
-        let user = {
-          name: auth.auth.displayName,
-          profileImageURL: auth.auth.photoURL,
-          uid: auth.auth.uid,
-          email: auth.auth.email,
-          score: 0,
-          admin: false
-        };
-        console.log(`Creating new user: ${user.name}`);
-        this.af.database.object(`/users/${user.uid}`).update(user);
+        // check for existing user
+        // console.log(`Logged in with uid ${auth.auth.uid}`);
+        let loggedInUser = this.af.database.object(`/users/${auth.auth.uid}`);
+        loggedInUser.subscribe(checkedUser => {
+          // console.log(checkedUser);
+          if (checkedUser.uid) {
+            // console.log('User already exists');
+            // don't need to do anything else; user will just be logged in
+          } else {
+            // console.log('User does not exist');
+            let user = {
+              name: auth.auth.displayName,
+              profileImageURL: auth.auth.photoURL,
+              uid: auth.auth.uid,
+              email: auth.auth.email,
+              score: 0,
+              admin: false
+            };
+            console.log(`Creating new user: ${user.name}`);
+            loggedInUser.update(user);
+          }
+        }).unsubscribe();
       }
     }
     );
