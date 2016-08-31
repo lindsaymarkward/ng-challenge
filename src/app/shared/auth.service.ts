@@ -12,7 +12,7 @@ export class AuthService {
   }
 
   getUser(): Observable<User> {
-    console.log('Getting user...');
+    // console.log('Getting user...');
     return this.af.auth.flatMap(auth => {
       if (auth) {
         // console.log('auth is true');

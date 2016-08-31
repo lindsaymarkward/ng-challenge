@@ -5,7 +5,6 @@ import { AuthService } from './shared/auth.service';
 import { User } from './shared';
 
 const jQuery = require('jquery');
-// const bootstrap = require('bootstrap');
 
 @Component({
   selector: 'app-root',
@@ -28,7 +27,7 @@ export class AppComponent implements OnInit {
     this.authService.getUser()
       .subscribe(user => {
         this.user = user;
-        console.log(`Got: ${user.name}`);
+        // console.log(`Got: ${user.name}`);
       });
   }
 

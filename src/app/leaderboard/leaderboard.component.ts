@@ -21,7 +21,7 @@ export class LeaderboardComponent implements OnInit {
     this.authService.getUser()
       .subscribe(user => {
         this.loggedInUser = user;
-        console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
+        // console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
       }
       );
     this.users = this.af.database.list('/users')
