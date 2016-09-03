@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users | async; let i = index" [ngClass]="{'success': user.$key === loggedInUser.uid}" id="{{ user.$key }}" >
+        <tr *ngFor="let user of users | async; let i = index" [ngClass]="{'success': user.$key === loggedInUser?.uid}" id="{{ user.$key }}" >
             <td>{{ i + 1 }} <span *ngIf="i === 0" class="glyphicon glyphicon-star"></span></td>
             <td><span class="badge">{{ user.score }}</span></td>
             <td>{{ user.name }}</td>

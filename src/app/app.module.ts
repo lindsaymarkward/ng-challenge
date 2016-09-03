@@ -9,7 +9,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { routing } from './app.routing';
 import { UserDetailComponent } from './userdetail/userdetail.component';
 import { AboutComponent } from './about/about.component';
-import { AuthService } from './shared';
+import { AuthService, AuthGuardService } from './shared';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU',
@@ -38,7 +38,7 @@ export const firebaseAuthConfig = {
     routing,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
-  providers: [ AuthService ],
+  providers: [ AuthService, AuthGuardService ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })

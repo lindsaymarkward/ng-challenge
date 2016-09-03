@@ -34,8 +34,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   update() {
-    delete this.user['$key'];
-    console.log(JSON.stringify(this.user));
+    delete this.user['$key'];  // remove invalid key
     this.userObservable.update(this.user);
     // return to the users list
     this.router.navigate(['/users']);

@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // console.log(this.auth);
     this.user = {};
+    // this.user = this.authService.getUser2();
     this.authService.getUser()
       .subscribe(user => {
         this.user = user;
@@ -48,11 +49,13 @@ export class AppComponent implements OnInit {
     this.user = {};
     this.router.navigate(['/']);
   }
-  
+
   check() {
     // note: each time this subscribes, it adds a new subscription
-    this.authService.getUser()
-      .subscribe(user => { this.user = user; console.log(`Checked: ${user.name}`); });
-    console.log(this.auth);
+    // this.authService.getUser()
+    //   .subscribe(user => { this.user = user; console.log(`Checked: ${user.name}`); });
+    // console.log(this.auth);
+
+    console.log(this.authService.getUser2());
   }
 }

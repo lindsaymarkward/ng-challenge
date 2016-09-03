@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-
 import { User } from './models';
 
 @Injectable()
 export class AuthService {
 
   private isCreatingUser = false;
-
+  private user: User;
+  public isAuthenticated = false;
   constructor(private af: AngularFire) {
     this.setupLogin();
   }
@@ -28,6 +27,9 @@ export class AuthService {
                 console.log('User does not exist; Logging out');
                 this.logout();
               }
+              this.isAuthenticated = true;
+              this.user = checkedUser;
+              // console.log(this.user);
               // don't need to do anything else; user will just be logged in
             });
         } else {
@@ -58,12 +60,18 @@ export class AuthService {
     // console.log('Getting user...');
     return this.af.auth.flatMap(auth => {
       if (auth) {
+        // return this.af.database.object(`/users/${auth.auth.uid}`);
         return this.af.database.object(`/users/${auth.auth.uid}`);
       } else {
         // return empty 'user'
         return Observable.of({});
       }
     });
+  }
+
+  getUser2() {
+    console.log(this.user);
+    return this.user;
   }
 
   createAccount() {
@@ -77,18 +85,21 @@ export class AuthService {
 
   login() {
     this.af.auth.login();
+    this.isAuthenticated = true;
   }
 
   logout() {
     this.af.auth.logout();
+    this.isAuthenticated = false;
+    this.user = {};
   }
 
-  isAdmin(user) {
-    // this.af.database.object(`/users/${user.uid}`)
-    return false;
+  isAdmin() {
+    return this.user.admin;
   }
 
   isLoggedIn() {
-    return this.af.auth;
+    console.log(`isAuth ${this.isAuthenticated}`);
+    return this.isAuthenticated;
   }
 }

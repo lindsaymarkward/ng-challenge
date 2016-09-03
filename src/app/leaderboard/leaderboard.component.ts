@@ -18,12 +18,13 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getUser()
-      .subscribe(user => {
-        this.loggedInUser = user;
-        // console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
-      }
-      );
+    // this.authService.getUser()
+    //   .subscribe(user => {
+    //     this.loggedInUser = user;
+    //     // console.log(`Leaderboard knows user is ${this.loggedInUser.name}`);
+    //   }
+    //   );
+    this.loggedInUser = this.authService.getUser2();
     this.users = this.af.database.list('/users')
       .map(users => users.sort((a, b) => b.score - a.score)) as FirebaseListObservable<any[]>;
     this.users
