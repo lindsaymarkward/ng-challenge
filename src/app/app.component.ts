@@ -1,6 +1,7 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFire, AngularFireAuth } from 'angularfire2';
+import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
 import { User } from './shared';
 
@@ -17,17 +18,20 @@ export class AppComponent implements OnInit {
   auth: AngularFireAuth;
   user: User;
 
-  constructor(private af: AngularFire, private authService: AuthService) {
+  constructor(
+    private af: AngularFire,
+    private authService: AuthService,
+    private router: Router) {
     this.auth = this.authService.getAuth();
   }
 
   ngOnInit() {
-    console.log(this.auth);
+    // console.log(this.auth);
     this.user = {};
     this.authService.getUser()
       .subscribe(user => {
         this.user = user;
-        // console.log(`Got: ${user.name}`);
+        console.log(`Got: ${user.name}`);
       });
   }
 
@@ -37,17 +41,13 @@ export class AppComponent implements OnInit {
 
   login() {
     this.authService.login();
-    // TODO - check if user exists in the system, then redirect or set
-    // this.af.auth.subscribe(auth => {
-    //   if (auth) {
-    //   }
-    // }
-    // );
   }
 
   logout() {
     this.authService.logout();
     this.user = {};
+    this.router.navigate(['/']);
+
   }
   check() {
     this.authService.getUser()

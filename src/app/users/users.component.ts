@@ -19,12 +19,13 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSortedUsers();
+    // console.log('getting users');
+    this.users = this.af.database.list('/users');
+    this.sortUsers();
   }
 
-  getSortedUsers() {
-    // console.log('getting users');
-    this.users = this.af.database.list('/users')
+  sortUsers() {
+    this.users = this.users
       .map(users => users.sort((a, b) => {
         let result: number;
         if (this.sortBy === 'name') {
@@ -37,8 +38,8 @@ export class UsersComponent implements OnInit {
         }
         return result;
       })) as FirebaseListObservable<any[]>;
-
   }
+
   gotoDetail(key) {
     this.router.navigate(['/user', key]);
   }
@@ -48,6 +49,7 @@ export class UsersComponent implements OnInit {
       this.sortReverse = !this.sortReverse;
     }
     this.sortBy = field;
-    this.getSortedUsers();
+    this.sortUsers();
+    // this.getSortedUsers();  // TODO - is there a better way to update list?
   }
 }
