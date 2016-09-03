@@ -57,10 +57,11 @@ export class AuthService {
   }
 
   getUser(): Observable<User> {
-    // console.log('Getting user...');
+    console.log('Getting user...');
+    // return Observable.of(this.user);  // another failed idea...
     return this.af.auth.flatMap(auth => {
       if (auth) {
-        // return this.af.database.object(`/users/${auth.auth.uid}`);
+        // return Observable.of(this.user);
         return this.af.database.object(`/users/${auth.auth.uid}`);
       } else {
         // return empty 'user'
@@ -69,6 +70,7 @@ export class AuthService {
     });
   }
 
+// attempt at making a more efficient way of getting user, but consumers of this need it asynchronously, it seems.
   getUser2() {
     console.log(this.user);
     return this.user;

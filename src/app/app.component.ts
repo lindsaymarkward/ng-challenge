@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   title = 'The IT@JCU Challenge';
   auth: AngularFireAuth;
   user: User;
+  admin = false;
 
   constructor(
     private af: AngularFire,
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
     this.authService.getUser()
       .subscribe(user => {
         this.user = user;
+        this.admin = user.admin;
         console.log(`Got: ${user.name}`);
       });
   }
