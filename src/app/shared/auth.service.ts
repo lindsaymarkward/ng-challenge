@@ -1,14 +1,44 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+
 import { User } from './models';
 
 @Injectable()
 export class AuthService {
 
   // user: User;
+  private userSubscription: Subscription;
 
   constructor(private af: AngularFire) {
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        // check for existing user
+        console.log(`Logged in with uid ${auth.auth.uid}`);
+
+        // manage subscription (avoid multiples)
+        if (!this.userSubscription) {
+          // this.userSubscription.unsubscribe(); console.log(this.userSubscription); }
+
+          this.userSubscription = this.af.database.object(`/users/${auth.auth.uid}`)
+            .subscribe(checkedUser => {
+              // console.log(checkedUser);
+              if (checkedUser.uid) {
+                console.log('User exists');
+                // return;
+                // don't need to do anything else; user will just be logged in
+              } else {
+                console.log('User does not exist; Logging out');
+                // TODO - message about signing up
+                this.logout();
+              }
+            });
+        }
+      }
+    }
+    ); // .unsubscribe(); // TODO - not sure about this unsubscribe... without it, I get another new subscription each time... with it, I get no console.log output 
+
   }
 
   getUser(): Observable<User> {
@@ -53,7 +83,7 @@ export class AuthService {
         }).unsubscribe();
       }
     }
-    ).unsubscribe();
+    );
   }
   getAuth() {
     return this.af.auth;
@@ -62,26 +92,32 @@ export class AuthService {
   login() {
     this.af.auth.login();
     // only login existing users
-    this.af.auth.subscribe(auth => {
-      if (auth) {
-        // check for existing user
-        console.log(`Logged in with uid ${auth.auth.uid}`);
-        let loggedInUser = this.af.database.object(`/users/${auth.auth.uid}`);
-        loggedInUser.subscribe(checkedUser => {
-          console.log(checkedUser);
-          if (checkedUser.uid) {
-            console.log('User exists');
-            // return;
-            // don't need to do anything else; user will just be logged in
-          } else {
-            console.log('User does not exist; Logging out');
-            // TODO - message about signing up
-            this.logout();
-          }
-        }).unsubscribe();
-      }
-    }
-    ).unsubscribe(); // TODO - not sure about this unsubscribe... without it, I get another new subscription each time... with it, I get no console.log output 
+    // this.af.auth.subscribe(auth => {
+    //   if (auth) {
+    //     // check for existing user
+    //     console.log(`Logged in with uid ${auth.auth.uid}`);
+
+    //     // manage subscription (avoid multiples)
+    //     if (!this.userSubscription) {
+    //       // this.userSubscription.unsubscribe(); console.log(this.userSubscription); }
+
+    //       this.userSubscription = this.af.database.object(`/users/${auth.auth.uid}`)
+    //         .subscribe(checkedUser => {
+    //           // console.log(checkedUser);
+    //           if (checkedUser.uid) {
+    //             console.log('User exists');
+    //             // return;
+    //             // don't need to do anything else; user will just be logged in
+    //           } else {
+    //             console.log('User does not exist; Logging out');
+    //             // TODO - message about signing up
+    //             this.logout();
+    //           }
+    //         });
+    //     }
+    //   }
+    // }
+    // ); // .unsubscribe(); // TODO - not sure about this unsubscribe... without it, I get another new subscription each time... with it, I get no console.log output 
   }
 
   logout() {

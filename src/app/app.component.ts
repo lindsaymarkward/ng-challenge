@@ -52,6 +52,6 @@ export class AppComponent implements OnInit {
   check() {
     this.authService.getUser()
       .subscribe(user => { this.user = user; console.log(`Checked: ${user.name}`); });
-
+    console.log(this.auth);
   }
 }
