@@ -47,9 +47,10 @@ export class AppComponent implements OnInit {
     this.authService.logout();
     this.user = {};
     this.router.navigate(['/']);
-
   }
+  
   check() {
+    // note: each time this subscribes, it adds a new subscription
     this.authService.getUser()
       .subscribe(user => { this.user = user; console.log(`Checked: ${user.name}`); });
     console.log(this.auth);

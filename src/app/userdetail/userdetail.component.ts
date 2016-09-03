@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { User } from '../shared';
 
 @Component({
   selector: 'app-userdetail',
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class UserDetailComponent implements OnInit {
 
   public userObservable: FirebaseObjectObservable<any>;
-  public user: any;
+  public user: User;
 
   constructor(
     private af: AngularFire,
@@ -20,20 +21,22 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-    let userid = params['userid'];
-    // get user from database
-    this.userObservable = this.af.database.object(`users/${userid}`);
-    this.userObservable.subscribe(
-      user => {
-        this.user = user;
-        // console.log(user);
-      }
-    );
-  });
+      let userid = params['userid'];
+      // get user from database
+      this.userObservable = this.af.database.object(`users/${userid}`);
+      this.userObservable.subscribe(
+        user => {
+          this.user = user;
+          console.log(`userdetail user: ${user.name}`);
+        }
+      );
+    });
   }
 
-  update(score) {
-    this.userObservable.update({ score: parseInt(score, 10) });
+  update() {
+    delete this.user['$key'];
+    console.log(JSON.stringify(this.user));
+    this.userObservable.update(this.user);
     // return to the users list
     this.router.navigate(['/users']);
   }

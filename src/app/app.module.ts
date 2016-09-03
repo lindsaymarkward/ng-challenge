@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -9,7 +9,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { routing } from './app.routing';
 import { UserDetailComponent } from './userdetail/userdetail.component';
 import { AboutComponent } from './about/about.component';
-import { AuthService, User } from './shared';
+import { AuthService } from './shared';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU',
