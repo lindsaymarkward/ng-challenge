@@ -10,6 +10,7 @@ import { routing } from './app.routing';
 import { UserDetailComponent } from './userdetail/userdetail.component';
 import { AboutComponent } from './about/about.component';
 import { AuthService, AuthGuardService } from './shared';
+import { AdminModule } from './admin/admin.module';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU',
@@ -29,9 +30,10 @@ export const firebaseAuthConfig = {
     UsersComponent,
     LeaderboardComponent,
     UserDetailComponent,
-    AboutComponent
+    AboutComponent,
   ],
   imports: [
+    AdminModule,
     BrowserModule,
     CommonModule,
     FormsModule,

@@ -15,6 +15,7 @@
   <ul class="nav nav-tabs">
     <li><a routerLink="/leaderboard" routerLinkActive="active"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Leaderboard</a></li>
     <li><a routerLink="/about" routerLinkActive="active"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> About</a></li>
+    <li><a routerLink="/admin" routerLinkActive="active"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Admin**</a></li>
 
     <li *ngIf="admin"><a routerLink="/users" routerLinkActive="active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
     <li *ngIf="!(auth | async)" class="pull-right clickable"><a (click)="login()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
