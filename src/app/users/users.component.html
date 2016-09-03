@@ -1,8 +1,29 @@
-<div *ngFor="let user of users | async" (click)="gotoDetail(user.$key)">
+<!--<div *ngFor="let user of users | async" (click)="gotoDetail(user.$key)">
   <div class="panel panel-default">
     <div class="panel-body">
       <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
       <strong>Name: </strong>{{ user.name }}, <strong>Email:</strong> {{ user.email}}, <strong>Score:</strong> {{ user.score }}
     </div>
   </div>
-</div>
+</div>-->
+<table class="table table-striped table-hover table-condensed" id="leaderboard">
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th><a class="clickable" (click)="changeSort('name')"><span *ngIf="sortBy === 'name'" class="glyphicon glyphicon-sort"> </span> Name</a></th>
+            <th>Email</th>
+            <th><a class="clickable" (click)="changeSort('score')"><span *ngIf="sortBy === 'score'" class="glyphicon glyphicon-sort"> </span> Score</a></th>
+            <th>Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users | async; let i = index" (click)="gotoDetail(user.$key)" >
+            <td><img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image small-user-image"></td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td><span class="badge">{{ user.score }}</span></td>
+            <td>{{ user.admin }}</td>
+        </tr>
+    </tbody>
+</table>
+

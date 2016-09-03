@@ -2,3 +2,14 @@
 $blue-dark: #005ABB;
 $blue-medium: #006EDE;
 $blue-light: #348DEF;
+
+.user-image {
+    border-radius: 50%;
+}
+.small-user-image {
+    height: 25px;
+    width: 25px;
+}
+.clickable {
+    cursor: pointer;
+}

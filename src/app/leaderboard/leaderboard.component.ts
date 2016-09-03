@@ -29,6 +29,7 @@ export class LeaderboardComponent implements OnInit {
     this.users
       .subscribe(users => {
         this.numberOfUsers = users.length;
+        // TODO - look at ng2 animations instead of jQuery
         $('#leaderboard').fadeOut(300).fadeIn(300);
       });
   }

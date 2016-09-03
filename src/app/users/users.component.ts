@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-  users: FirebaseListObservable<any[]>;  // note: tried using 'FirebaseListObservable<any[]>' but got type conversion error
+  users: FirebaseListObservable<any[]>;
+  sortBy = 'name';
+  sortReverse = false;
 
   constructor(
     private af: AngularFire,
@@ -17,12 +19,35 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.users = this.af.database.list('/users')
-      .map(users => users.sort((a, b) => b.score - a.score)) as FirebaseListObservable<any[]>;
+    this.getSortedUsers();
   }
 
+  getSortedUsers() {
+    // console.log('getting users');
+    this.users = this.af.database.list('/users')
+      .map(users => users.sort((a, b) => {
+        let result: number;
+        if (this.sortBy === 'name') {
+          result = b.name < a.name ? 1 : -1;
+        } else if (this.sortBy === 'score') {
+          result = b.score - a.score;
+        }
+        if (this.sortReverse) {
+          result = -result;
+        }
+        return result;
+      })) as FirebaseListObservable<any[]>;
+
+  }
   gotoDetail(key) {
     this.router.navigate(['/user', key]);
   }
 
+  changeSort(field) {
+    if (this.sortBy === field) {
+      this.sortReverse = !this.sortReverse;
+    }
+    this.sortBy = field;
+    this.getSortedUsers();
+  }
 }
