@@ -29,7 +29,7 @@ export class AuthService {
               }
               this.isAuthenticated = true;
               this.user = checkedUser;
-              // console.log(this.user);
+              console.log(`in setup: ${this.user}`);
               // don't need to do anything else; user will just be logged in
             });
         } else {
@@ -70,7 +70,7 @@ export class AuthService {
     });
   }
 
-// attempt at making a more efficient way of getting user, but consumers of this need it asynchronously, it seems.
+  // attempt at making a more efficient way of getting user, but consumers of this need it asynchronously, it seems.
   getUser2() {
     console.log(this.user);
     return this.user;
@@ -97,11 +97,16 @@ export class AuthService {
   }
 
   isAdmin() {
-    return this.user.admin;
+    // console.log(`isAdmin ${this.user}`);
+    if (this.user) {
+      return this.user.admin;
+    } else {
+      return false;
+    }
   }
 
   isLoggedIn() {
-    console.log(`isAuth ${this.isAuthenticated}`);
+    console.log(`isLoggedIn() ${this.isAuthenticated}`);
     return this.isAuthenticated;
   }
 }

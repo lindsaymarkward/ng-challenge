@@ -27,14 +27,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.auth);
+    console.log(this.auth);
     this.user = {};
-    // this.user = this.authService.getUser2();
+
     this.authService.getUser()
       .subscribe(user => {
         this.user = user;
         this.admin = user.admin;
-        console.log(`Got: ${user.name}`);
+        console.log(`Got: ${user.name}, ${user.admin}`);
       });
   }
 

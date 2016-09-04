@@ -1,9 +1,9 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './';
-// import { UsersComponent } from './users';
-// import { AuthGuardService } from '../shared';
-import { ChallengesComponent } from './challenges';
+import { AdminComponent, ChallengesComponent } from './';
+import { UsersComponent } from './users';
+import { UserDetailComponent } from './userdetail';
+import { AuthGuardService } from '../shared';
 
 const adminRoutes: Routes = [
   {
@@ -13,11 +13,12 @@ const adminRoutes: Routes = [
   },
   {
     path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuardService],
     children: [
       { path: '', component: AdminComponent },
-      // TODO - move these in here...
-      // { path: 'users', component: UsersComponent, canActivate: [AuthGuardService] },
-      // { path: 'user/:userid', component: UserDetailComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'user/:userid', component: UserDetailComponent },
       { path: 'challenges', component: ChallengesComponent },
     ]
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../shared';
+import { User } from '../../shared';
 
 @Component({
   selector: 'app-userdetail',
