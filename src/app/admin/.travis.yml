@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "6.5"
+install:
+  - npm install -g firebase-tools
+  - npm install -g angular-cli@webpack
+  - npm install --no-optional
+script:
+  - echo "Deploying"
+  - ng build --prod
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN
