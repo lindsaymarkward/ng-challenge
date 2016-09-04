@@ -97,7 +97,7 @@ export class AuthService {
   }
 
   isAdmin() {
-    // console.log(`isAdmin ${this.user}`);
+    console.log(`isAdmin ${this.user}`);
     if (this.user) {
       return this.user.admin;
     } else {
