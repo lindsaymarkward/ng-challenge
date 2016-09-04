@@ -42,7 +42,7 @@ export class UsersComponent implements OnInit {
 
   gotoDetail(key) {
     // console.log(`goto ${key}`);
-    this.router.navigate(['user', key]);
+    this.router.navigate(['/admin/user', key]);
   }
 
   changeSort(field) {

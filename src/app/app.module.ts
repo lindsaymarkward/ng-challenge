@@ -19,7 +19,7 @@ export const firebaseConfig = {
 
 export const firebaseAuthConfig = {
   provider: AuthProviders.Google,
-  method: AuthMethods.Popup
+  method: AuthMethods.Popup  // TODO - find additional/alternative method, since popups don't work in iOS Chrome https://www.firebase.com/docs/web/guide/user-auth.html
 };
 
 @NgModule({

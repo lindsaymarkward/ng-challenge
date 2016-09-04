@@ -1,10 +1,8 @@
 /*.active { background-color: aquamarine}*/
 
 .profile { 
-    float: right;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: -15px;
+    justify-content: space-around;
 }
 
 .profile-details {
@@ -13,9 +11,3 @@
     flex-direction: column;
     justify-content: inherit;
 }
-
-.thumbnail {
-    position:relative;
-    float: right;
-}
-

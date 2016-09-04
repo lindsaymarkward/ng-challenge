@@ -27,23 +27,24 @@ export class UserDetailComponent implements OnInit {
       this.userObservable.subscribe(
         user => {
           this.user = user;
-          console.log(`userdetail user: ${user.name}`);
+          // console.log(`userdetail user: ${user.name}`);
         }
       );
     });
   }
 
   update() {
-    delete this.user['$key'];  // remove invalid key
+    // remove invalid key so Firebase can update properly
+    delete this.user['$key'];
     this.userObservable.update(this.user);
     // return to the users list
-    this.router.navigate(['/users']);
+    this.router.navigate(['/admin/users']);
   }
 
   remove() {
     this.userObservable.remove();
     // return to the users list
-    this.router.navigate(['/users']);
+    this.router.navigate(['/admin/users']);
   }
 
 }

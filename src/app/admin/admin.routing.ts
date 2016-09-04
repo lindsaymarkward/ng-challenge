@@ -6,17 +6,17 @@ import { UserDetailComponent } from './userdetail';
 import { AuthGuardService } from '../shared';
 
 const adminRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/admin',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: '/admin',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuardService],
     children: [
-      { path: '', component: AdminComponent },
+      { path: '' },
       { path: 'users', component: UsersComponent },
       { path: 'user/:userid', component: UserDetailComponent },
       { path: 'challenges', component: ChallengesComponent },
