@@ -5,8 +5,9 @@ install:
   - npm install -g firebase-tools
   - npm install -g angular-cli@webpack
   - npm install --no-optional
+  - npm uninstall --save-dev typescript
+  - npm install --save-dev typescript@beta
 script:
-  - echo "Deploying"
   - ng build --prod
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
