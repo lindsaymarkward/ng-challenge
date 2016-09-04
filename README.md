@@ -1,4 +1,6 @@
 # NgChallenge
+[![Build Status](https://travis-ci.org/lindsaymarkward/ng-challenge.svg?branch=master)](https://travis-ci.org/lindsaymarkward/ng-challenge)
+
 
 A demo for learning more Angular2 (current version, RC5)  
 Based on a game/scoring system for IT@JCU Open Day activities... 

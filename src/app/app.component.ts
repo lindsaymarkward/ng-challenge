@@ -14,7 +14,7 @@ const jQuery = require('jquery');
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'IT@JCU Challenge!';
+  title = 'IT@JCU Challenge';
   auth: AngularFireAuth;
   user: User;
   admin = false;
