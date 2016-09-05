@@ -1,0 +1,24 @@
+div.table 
+{
+    display:table;
+}
+form.tr, div.tr
+{
+    display:table-row;
+}
+span.td, span.th
+{
+    display:table-cell;
+}
+span.th {
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}

@@ -1,3 +1,50 @@
-<p>
-  challenges works!
-</p>
+<h2>Add New Challenge</h2>
+<form class="form-horizontal" (ngSubmit)="new(newForm)" #newForm="ngForm">
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="newChallenge.name" type="text" class="form-control" name="name" id="name" #name="ngModel" required>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="newChallenge.description" type="description" class="form-control" name="description" id="description" #description="ngModel" required>
+      <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+        Description is required
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="maxPoints" class="col-sm-2 control-label">Maximum Points</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="newChallenge.maxPoints" type="number" class="form-control" name="maxPoints" id="maxPoints">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success" [disabled]="!newForm.form.valid">Create new Challenge</button>
+    </div>
+  </div>
+</form>
+
+<h2>Edit Challenges</h2>
+<div class="table">
+    <div class="tr">
+        <span class="th">Name</span>
+        <span class="th">Description</span>
+        <!--<span class="th">Type</span>-->
+        <span class="th">Maximum Points</span>
+    </div>
+    <form *ngFor="let challenge of challenges | async" #form="ngForm" class="tr">
+        <span class="td"><input type="text" class="form-control" [(ngModel)]="challenge.name" name="name" id="name" #name="ngModel" required></span>
+        <span class="td"><input type="text" class="form-control" [(ngModel)]="challenge.description" name="description" id="description" #description="ngModel" required></span>
+        <!--<span class="td"><input type="text" class="form-control" [(ngModel)]="challenge.type" name="type" id="type" #type="ngModel" required></span>-->
+        <span class="td"><input type="number" class="form-control" [(ngModel)]="challenge.maxPoints" name="maxPoints" id="maxPoints" #maxPoints="ngModel" required></span>
+        <button type="button" (click)="update(challenge)" class="btn btn-success">Update</button>
+        <button type="button" (click)="delete(challenge.$key)" class="btn btn-danger">Delete</button>
+    </form>
+</div>

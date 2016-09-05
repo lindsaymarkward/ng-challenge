@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { AuthService, User } from '../shared';
 import * as jQuery from 'jquery';
@@ -8,7 +8,7 @@ import * as jQuery from 'jquery';
   templateUrl: 'leaderboard.component.html',
   styleUrls: ['leaderboard.component.scss']
 })
-export class LeaderboardComponent implements OnInit {
+export class LeaderboardComponent implements OnInit, OnDestroy {
   loggedInUser: User;
   numberOfUsers: number;
   users: FirebaseListObservable<any[]>;
@@ -29,10 +29,14 @@ export class LeaderboardComponent implements OnInit {
       .map(users => users.sort((a, b) => b.score - a.score)) as FirebaseListObservable<any[]>;
     this.users
       .subscribe(users => {
+        console.log('got users (again?)');
         this.numberOfUsers = users.length;
         // TODO - look at ng2 animations instead of jQuery
         $('#leaderboard').fadeOut(300).fadeIn(300);
       });
   }
 
+  ngOnDestroy() {
+    // console.log('Destroying leaderboard');
+  }
 }

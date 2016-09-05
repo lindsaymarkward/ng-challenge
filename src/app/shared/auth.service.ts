@@ -87,7 +87,7 @@ export class AuthService {
 
   login() {
     this.af.auth.login();
-    this.isAuthenticated = true;
+    // this.isAuthenticated = true;
   }
 
   logout() {
