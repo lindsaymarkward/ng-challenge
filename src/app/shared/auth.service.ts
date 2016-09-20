@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import { User } from './models';
+import { AuthProviders, AuthMethods } from 'angularfire2';
 
 @Injectable()
 export class AuthService {
@@ -76,18 +77,28 @@ export class AuthService {
     return this.user;
   }
 
-  createAccount() {
+  createAccount(method: string) {
     this.isCreatingUser = true;  // set back to false by subscriber function
-    this.login();  // need to use AuthMethod.Popup so it doesn't navigate away
+    this.login(method);  // need to use AuthMethod.Popup so it doesn't navigate away
   }
 
   getAuth() {
     return this.af.auth;
   }
 
-  login() {
-    this.af.auth.login();
-    // this.isAuthenticated = true;
+  login(method: string) {
+    let firebaseAuthConfig: any;
+    switch (method) {
+      case 'Facebook':
+        firebaseAuthConfig = { provider: AuthProviders.Facebook, method: AuthMethods.Popup, };
+        break;
+      case 'Google':
+        firebaseAuthConfig = { provider: AuthProviders.Google, method: AuthMethods.Popup, };
+        break;
+      case 'Twitter':
+        firebaseAuthConfig = { provider: AuthProviders.Twitter, method: AuthMethods.Popup, };
+    }
+    this.af.auth.login(firebaseAuthConfig);
   }
 
   logout() {
