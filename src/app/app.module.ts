@@ -9,6 +9,8 @@ import { AuthService, AuthGuardService } from './shared';
 import { AppComponent } from './app.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU',
@@ -18,8 +20,9 @@ export const firebaseConfig = {
 };
 
 export const firebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Popup  // TODO - find additional/alternative method, since popups don't work in iOS Chrome https://www.firebase.com/docs/web/guide/user-auth.html
+  provider: AuthProviders.Twitter,
+  // TODO - find additional/alternative method, since popups don't work in iOS Chrome https://www.firebase.com/docs/web/guide/user-auth.html
+  method: AuthMethods.Popup
 };
 
 @NgModule({
@@ -27,6 +30,8 @@ export const firebaseAuthConfig = {
     AppComponent,
     LeaderboardComponent,
     AboutComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     AdminModule,
@@ -36,7 +41,7 @@ export const firebaseAuthConfig = {
     routing,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
-  providers: [ AuthService, AuthGuardService ],
+  providers: [AuthService, AuthGuardService],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })

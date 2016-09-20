@@ -34,6 +34,7 @@ export class ChallengesComponent implements OnInit {
     // remove invalid key so Firebase can update properly
     let key = challenge['$key'];
     delete challenge['$key'];
+    delete challenge['$exists'];
     // console.log(challenge);
     this.challenges.update(key, challenge);
     // TODO: add confirm modal; maybe using https://github.com/shlomiassaf/angular2-modal 

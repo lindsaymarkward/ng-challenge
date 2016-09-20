@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
 import { User } from './shared';
 
-const jQuery = require('jquery');
+// const jQuery = require('jquery');
 
 @Component({
   selector: 'app-root',

@@ -36,6 +36,9 @@ export class UserDetailComponent implements OnInit {
   update() {
     // remove invalid key so Firebase can update properly
     delete this.user['$key'];
+    delete this.user['$exists'];
+    // console.log(this.user);
+    // console.log(this.userObservable);
     this.userObservable.update(this.user);
     // return to the users list
     this.router.navigate(['/admin/users']);
