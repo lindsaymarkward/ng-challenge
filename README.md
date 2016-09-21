@@ -2,10 +2,10 @@
 [![Build Status](https://travis-ci.org/lindsaymarkward/ng-challenge.svg?branch=master)](https://travis-ci.org/lindsaymarkward/ng-challenge)
 
 
-A demo for learning more Angular2 (current version, RC5)  
+A demo for learning more Angular2  
 Based on a game/scoring system for IT@JCU Open Day activities... 
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.8.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli)
 
 ## Build
 
