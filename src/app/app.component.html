@@ -25,8 +25,6 @@
       <a *ngIf="!(auth | async)" class="btn btn-success" routerLink="/signup"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up</a>
       <a *ngIf="!(auth | async)" class="btn btn-primary" routerLink="/login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
     </div>
-    <!--<li *ngIf="!(auth | async)" class="pull-right clickable"><a (click)="login()"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a></li>
-    <li *ngIf="!(auth | async)" class="pull-right clickable"><a (click)="createAccount()"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up with Google</a></li>-->
   </ul>
   <router-outlet></router-outlet>
   <footer class="footer">

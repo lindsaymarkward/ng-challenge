@@ -79,7 +79,7 @@ export class AuthService {
 
   createAccount(method: string) {
     this.isCreatingUser = true;  // set back to false by subscriber function
-    this.login(method);  // need to use AuthMethod.Popup so it doesn't navigate away
+    this.login(method);
   }
 
   getAuth() {
@@ -88,12 +88,16 @@ export class AuthService {
 
   login(method: string) {
     let firebaseAuthConfig: any;
+    // need to use AuthMethod.Popup so it doesn't navigate away (but Popup doesn't work in mobile Chrome)
     switch (method) {
       case 'Facebook':
         firebaseAuthConfig = { provider: AuthProviders.Facebook, method: AuthMethods.Popup, };
         break;
       case 'Google':
         firebaseAuthConfig = { provider: AuthProviders.Google, method: AuthMethods.Popup, };
+        break;
+      case 'Github':
+        firebaseAuthConfig = { provider: AuthProviders.Github, method: AuthMethods.Popup, };
         break;
       case 'Twitter':
         firebaseAuthConfig = { provider: AuthProviders.Twitter, method: AuthMethods.Popup, };

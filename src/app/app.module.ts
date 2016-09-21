@@ -11,6 +11,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBP3IERkXI8lyO8_vACVZd4MAwM9kTZjsU',
@@ -32,6 +33,7 @@ export const firebaseAuthConfig = {
     AboutComponent,
     LoginComponent,
     SignupComponent,
+    LoginFormComponent,
   ],
   imports: [
     AdminModule,

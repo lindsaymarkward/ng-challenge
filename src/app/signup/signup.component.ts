@@ -9,14 +9,21 @@ import { AuthService } from '../shared/auth.service';
 })
 export class SignupComponent implements OnInit {
 
+  public action: string;
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
+    this.action = 'Sign Up';
   }
 
   signUp(method: string) {
     this.authService.createAccount(method);
+  }
+
+  login(method: string) {
+    this.authService.login(method);
   }
 
 }
