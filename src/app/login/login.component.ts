@@ -9,6 +9,8 @@ import { AuthService } from '../shared/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  action = 'Login';
+
   constructor(private authService: AuthService, private router: Router) {
   }
   ngOnInit() {
