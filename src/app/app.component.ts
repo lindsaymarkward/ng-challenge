@@ -15,7 +15,7 @@ import { User } from './shared';
 })
 export class AppComponent implements OnInit {
   title = 'IT@JCU Challenge';
-  // auth: AngularFireAuth;
+  auth: AngularFireAuth;
   user: User;
   admin = false;
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     private af: AngularFire,
     private authService: AuthService,
     private router: Router) {
-    // this.auth = this.authService.getAuth();
+    this.auth = this.authService.getAuth();
   }
 
   ngOnInit() {

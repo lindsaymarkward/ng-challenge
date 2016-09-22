@@ -19,11 +19,8 @@ export class SignupComponent implements OnInit {
   }
 
   onAction(eventData: any) {
-    console.log(eventData);
-  }
-
-  signUp(method: string) {
-    this.authService.createAccount(method);
+    // console.log(eventData);
+    this.authService.createAccount(eventData.method);
   }
 
   login(method: string) {

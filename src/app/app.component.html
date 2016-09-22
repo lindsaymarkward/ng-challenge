@@ -21,9 +21,9 @@
     <li *ngIf="admin" class="pull-right"><a routerLink="/admin/users" routerLinkActive="active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
     <li *ngIf="admin" class="pull-right"><a routerLink="/admin/challenges" routerLinkActive="active"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Challenges</a></li>
 
-    <div class="btn-group pull-right login-buttons" role="group" aria-label="group">
-      <a *ngIf="!(auth | async)" class="btn btn-success" routerLink="/signup"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up</a>
-      <a *ngIf="!(auth | async)" class="btn btn-primary" routerLink="/login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
+    <div *ngIf="!(auth | async)" class="btn-group pull-right login-buttons" role="group" aria-label="group">
+      <a class="btn btn-success" routerLink="/signup"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Sign up</a>
+      <a class="btn btn-primary" routerLink="/login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
     </div>
   </ul>
   <router-outlet></router-outlet>

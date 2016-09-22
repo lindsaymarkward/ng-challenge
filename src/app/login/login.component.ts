@@ -17,11 +17,10 @@ export class LoginComponent implements OnInit {
   }
 
   onAction(eventData: any) {
-    console.log(eventData);
-  }
-
-  login() {
-    // this.authService.login();
+    // console.log(eventData);
+    this.authService.login(eventData.method);
+    // TODO - this currently navigates before login is complete; need subscribe...
+    this.router.navigate(['/leaderboard']);
   }
 
 }
