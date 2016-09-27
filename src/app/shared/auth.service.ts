@@ -73,7 +73,7 @@ export class AuthService {
 
   // attempt at making a more efficient way of getting user, but consumers of this need it asynchronously, it seems.
   getUser2() {
-    console.log(this.user);
+    console.log(`Get2: ${this.user}`);
     return this.user;
   }
 

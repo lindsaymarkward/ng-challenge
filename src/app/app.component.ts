@@ -1,9 +1,9 @@
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
 import { AngularFire, AngularFireAuth } from 'angularfire2';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
-import { User } from './shared';
+import { User } from './shared/models';
 
 // const jQuery = require('jquery');
 
@@ -23,10 +23,10 @@ export class AppComponent implements OnInit {
     private af: AngularFire,
     private authService: AuthService,
     private router: Router) {
-    this.auth = this.authService.getAuth();
   }
 
   ngOnInit() {
+    this.auth = this.authService.getAuth();
     // console.log(this.auth);
     this.user = {};
 
@@ -37,14 +37,6 @@ export class AppComponent implements OnInit {
         console.log(`Got: ${user.name}, ${user.admin}`);
       });
   }
-
-  // createAccount() {
-  //   this.authService.createAccount();
-  // }
-
-  // login() {
-  //   this.authService.login();
-  // }
 
   logout() {
     this.authService.logout();
