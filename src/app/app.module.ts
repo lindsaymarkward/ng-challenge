@@ -23,6 +23,7 @@ export const firebaseConfig = {
 export const firebaseAuthConfig = {
   provider: AuthProviders.Twitter,
   // TODO - find additional/alternative method, since popups don't work in iOS Chrome https://www.firebase.com/docs/web/guide/user-auth.html
+  // but not using this default anyway. Probably remove it 
   method: AuthMethods.Popup
 };
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import { User } from './models';
 import { AuthProviders, AuthMethods } from 'angularfire2';
@@ -86,7 +86,7 @@ export class AuthService {
     return this.af.auth;
   }
 
-  login(method: string) {
+  login(method: string): firebase.Promise<FirebaseAuthState> {
     let firebaseAuthConfig: any;
     // need to use AuthMethod.Popup so it doesn't navigate away (but Popup doesn't work in mobile Chrome)
     switch (method) {
@@ -102,7 +102,8 @@ export class AuthService {
       case 'Twitter':
         firebaseAuthConfig = { provider: AuthProviders.Twitter, method: AuthMethods.Popup, };
     }
-    this.af.auth.login(firebaseAuthConfig);
+    return this.af.auth.login(firebaseAuthConfig);
+    // (alternative with observable?) look at https://github.com/angular/angular/issues/9613#issuecomment-228748731
   }
 
   logout() {
