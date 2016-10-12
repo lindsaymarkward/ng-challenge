@@ -15,12 +15,20 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.action = 'Sign Up';
   }
 
   onAction(eventData: any) {
     // console.log(eventData);
-    this.authService.createAccount(eventData.method);
+    this.authService.createAccount(eventData.method)
+      .then(result => {
+        console.log(result);
+        this.router.navigate(['/leaderboard']);
+      },
+      error => {
+        console.log('Error... ');
+        console.log(error);
+      }
+      );
   }
 
   login(method: string) {

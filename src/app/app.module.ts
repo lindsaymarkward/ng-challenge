@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import * as firebase from 'firebase';  // used in AuthService (only needed to avoid IDE error)
 import { routing } from './app.routing';
 import { AdminModule } from './admin/admin.module';
 import { AuthService, AuthGuardService } from './shared';

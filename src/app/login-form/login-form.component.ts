@@ -17,4 +17,8 @@ export class LoginFormComponent implements OnInit {
   clickAction(method: string) {
     this.onAction.emit({action: this.action, method: method});
   }
+
+  submit(form) {
+    console.log(form);
+  }
 }

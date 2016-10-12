@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { AuthService } from '../shared';
 import { User } from '../shared/models';
@@ -8,13 +8,26 @@ import { User } from '../shared/models';
 @Component({
   selector: 'app-leaderboard',
   templateUrl: 'leaderboard.component.html',
-  styleUrls: ['leaderboard.component.scss']
+  styleUrls: ['leaderboard.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('out', style({
+        transform: 'translate3d(100%, 0, 0)'
+      })),
+      transition('in => out', animate('400ms ease-in-out')),
+      transition('out => in', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 export class LeaderboardComponent implements OnInit, OnDestroy {
   loggedInUser: User;
   numberOfUsers: number;
   users: FirebaseListObservable<any[]>;
   usersSubscription: any; // Observable<User[]>;  // TODO
+  menuState: string = 'out';
 
   constructor(private af: AngularFire, private authService: AuthService) {
     this.loggedInUser = {};
@@ -38,11 +51,22 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
         this.numberOfUsers = users.length;
         // TODO - look at ng2 animations instead of jQuery
         // $('#leaderboard').fadeOut(300).fadeIn(300);
+        this.users._ref.on('child_changed', c => {
+          console.log('child_changed ', `#${c.val().uid}`);
+          // $(`#${c.val().uid}`).fadeOut(200).fadeIn(200);
+          // let uid = 'Rb5eIpywyJNVgNXEMeMVsxfG1n23';
+          // $('#judah').fadeOut(200).fadeIn(200);
+          // $('#judah').css("background-color", "red")
+        });
       });
   }
 
   ngOnDestroy() {
     // console.log('Destroying leaderboard');
     this.usersSubscription.unsubscribe();
+  }
+
+  animate() {
+    this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
 }

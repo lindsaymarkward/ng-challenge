@@ -77,9 +77,9 @@ export class AuthService {
     return this.user;
   }
 
-  createAccount(method: string) {
+  createAccount(method: string): firebase.Promise<FirebaseAuthState> {
     this.isCreatingUser = true;  // set back to false by subscriber function
-    this.login(method);
+    return this.login(method);
   }
 
   getAuth() {

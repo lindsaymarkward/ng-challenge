@@ -36,7 +36,7 @@
 
   <div class="row omb_row-sm-offset-2">
     <div class="col-xs-12 col-sm-8">
-      <form class="omb_loginForm" autocomplete="off" (ngSubmit)="clickAction(newForm)" #newForm="ngForm">
+      <form class="omb_loginForm" autocomplete="off" (ngSubmit)="submit(newForm)" #newForm="ngForm">
         <div *ngIf="action=='Sign Up'" class="input-group">
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
           <input type="text" class="form-control" name="name" placeholder="Name">

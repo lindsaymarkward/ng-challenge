@@ -1,6 +1,6 @@
-<h2>Leaderboard</h2>
+<h2 (click)=animate()>Leaderboard</h2>
 <p>We have {{ numberOfUsers }} users.</p>
-<table class="table table-striped table-hover table-condensed" id="leaderboard">
+<table class="table table-striped table-hover table-condensed" id="leaderboard" [@slideInOut]="menuState">
     <thead>
         <tr>
             <th class="">Rank</th>

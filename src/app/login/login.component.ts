@@ -22,6 +22,10 @@ export class LoginComponent implements OnInit {
       .then(result => {
         console.log(result);
         this.router.navigate(['/leaderboard']);
+      },
+      error => {
+        console.log('Error... ');
+        console.log(error);
       }
       );
   }
