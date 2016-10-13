@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFire, AngularFireAuth } from 'angularfire2';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';

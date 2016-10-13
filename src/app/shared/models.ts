@@ -5,6 +5,7 @@ export interface User {
     profileImageURL?: string;
     score?: number;
     admin?: boolean;
+    updated?: any;
 };
 
 export interface Challenge {

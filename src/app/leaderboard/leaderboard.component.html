@@ -1,5 +1,5 @@
 <h2 (click)=animate()>Leaderboard</h2>
-<p>We have {{ numberOfUsers }} users.</p>
+<p (click)=check()>We have {{ numberOfUsers }} users.</p>
 <table class="table table-striped table-hover table-condensed" id="leaderboard" [@slideInOut]="menuState">
     <thead>
         <tr>
@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users | async; let i = index" [ngClass]="{'success': user.$key === loggedInUser?.uid}" id="{{ user.$key }}" >
+        <tr *ngFor="let user of users | async; let i = index" [ngClass]="{'success': user.$key === loggedInUser?.uid}" id="{{ user.$key }}" [@flashRow]="user.updated">
             <td>{{ i + 1 }} <span *ngIf="i === 0" class="glyphicon glyphicon-star"></span></td>
             <td><span class="badge">{{ user.score }}</span></td>
             <td>{{ user.name }}</td>

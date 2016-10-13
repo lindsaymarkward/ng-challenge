@@ -3,7 +3,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { AuthService } from '../shared';
 import { User } from '../shared/models';
 // import { Observable } from 'rxjs';
-// import * as jQuery from 'jquery';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-leaderboard',
@@ -12,14 +12,28 @@ import { User } from '../shared/models';
   animations: [
     trigger('slideInOut', [
       state('in', style({
-        transform: 'translate3d(0, 0, 0)'
+        // transform: 'translate3d(0, 0, 0)'
+        transform: 'rotateX(0deg)'
       })),
       state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
+        // transform: 'translate3d(100%, 0, 0)'
+        transform: 'rotateX(90deg)'
       })),
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out'))
     ]),
+    trigger('flashRow', [
+      transition('inactive => active', [
+        style({
+          backgroundColor: '#cfd8dc',
+          transform: 'scale(1.1)'
+        }),
+        animate('400ms ease-in', style({
+          backgroundColor: '#eee',
+          transform: 'scale(1)'
+        }))
+      ]),
+    ])
   ]
 })
 export class LeaderboardComponent implements OnInit, OnDestroy {
@@ -27,7 +41,9 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   numberOfUsers: number;
   users: FirebaseListObservable<any[]>;
   usersSubscription: any; // Observable<User[]>;  // TODO
-  menuState: string = 'out';
+  // TODO temporary animations
+  menuState: string = 'in';
+  flashNow: string = 'inactive';
 
   constructor(private af: AngularFire, private authService: AuthService) {
     this.loggedInUser = {};
@@ -51,14 +67,17 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
         this.numberOfUsers = users.length;
         // TODO - look at ng2 animations instead of jQuery
         // $('#leaderboard').fadeOut(300).fadeIn(300);
-        this.users._ref.on('child_changed', c => {
-          console.log('child_changed ', `#${c.val().uid}`);
-          // $(`#${c.val().uid}`).fadeOut(200).fadeIn(200);
-          // let uid = 'Rb5eIpywyJNVgNXEMeMVsxfG1n23';
-          // $('#judah').fadeOut(200).fadeIn(200);
-          // $('#judah').css("background-color", "red")
-        });
       });
+    this.users._ref.on('child_changed', c => {
+      // can't easily use ng animations as I can't see how to set values of the changed child here (c is not the actual object, it seems)
+      // console.log('child_changed ', `#${c.val().uid}, ${JSON.stringify(c.val())}`);
+      // setTimeout(() => c.val().updated = 'active', 200);
+      // setTimeout(() => c.val().updated = 'inactive', 1000);
+
+      // setTimeout(() => this.flashNow = 'active', 200);
+      // setTimeout(() => this.flashNow = 'inactive', 1000);
+      setTimeout(() => $(`#${c.val().uid}`).fadeOut(300).fadeIn(300), 200);
+    });
   }
 
   ngOnDestroy() {
@@ -68,5 +87,8 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
 
   animate() {
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
+  }
+  check() {
+    this.flashNow = this.flashNow === 'active' ? 'inactive' : 'active';
   }
 }
