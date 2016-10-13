@@ -3,7 +3,7 @@
     <div class="col-md-7">
       <h1>{{title}}</h1>
     </div>
-    <div *ngIf="user.name" class="profile thumbnail col-md-5">
+    <div *ngIf="user.name" class="profile thumbnail col-md-5" [@flyInOut]="user.name">
       <div class="profile-image">
         <img src="{{ user.profileImageURL }}" alt="{{ user.name }}" class="user-image">
       </div>
