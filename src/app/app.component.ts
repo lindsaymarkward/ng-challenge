@@ -12,25 +12,14 @@ import { User } from './shared/models';
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('profileFade', [
-      state('in', style({
-        opacity: 1
-        // transform: 'scaleY(1)'
-      })),
-      state('out', style({
-        opacity: 0
-        // transform: 'scaleY(0)'
-      })),
-      // transition('in <=> out', animate('400ms ease-in-out'))
-      transition('* <=> *', animate('400ms ease-in-out'))
-    ]),
-    trigger('flyInOut', [
-      state('in', style({ transform: 'translateX(0)' })),
+      state('*', style({ opacity: 1, transform: 'translateX(0)' })),
       transition('void => *', [
-        style({ transform: 'translateX(-100%)' }),
-        animate(100)
+        // NOTE: the order of this style()/animate() cf the other transition matters (this sets style to animate _from_)
+        style({ opacity: 0, transform: 'translateX(100%)' }),
+        animate('500ms ease-in-out')
       ]),
       transition('* => void', [
-        animate(100, style({ transform: 'translateX(100%)' }))
+        animate('500ms ease-in-out', style({ opacity: 0, transform: 'translateX(100%)' }))
       ])
     ])
   ]
